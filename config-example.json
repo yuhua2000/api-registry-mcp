@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "api-registry-mcp": {
+      "command": "go",
+      "args": ["run", "/path/to/your/api-registry-mcp/main.go"]
+    }
+  }
+}
+
+// 使用说明：
+// 1. 将此配置添加到您的 MCP 客户端配置文件（如 Claude Desktop 的 claude_desktop_config.json）
+// 2. 将 "/path/to/your/api-registry-mcp/" 替换为实际的项目路径
+// 3. 确保已安装 Go 1.26+ 并配置好环境变量
+// 4. 重启 MCP 客户端以加载配置

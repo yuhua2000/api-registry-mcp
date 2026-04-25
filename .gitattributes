@@ -1,0 +1,3 @@
+*.go linguist-language=Go
+*.md linguist-language=Markdown
+LICENSE linguist-language=Text
