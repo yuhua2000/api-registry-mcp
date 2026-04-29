@@ -54,12 +54,7 @@ go mod download
 go run main.go
 ```
 
-服务将在默认端口 `8080` 启动。您可以使用以下命令测试服务：
-
-```bash
-# 测试服务是否正常运行
-curl http://localhost:8080/
-```
+服务将在默认端口 `8080` 启动。
 
 ### MCP 客户端配置
 
@@ -70,7 +65,7 @@ curl http://localhost:8080/
 {
   "mcpServers": {
     "api-registry-mcp": {
-      "url": "http://localhost:8080"
+      "url": "http://localhost:8080/sse"
     }
   }
 }
