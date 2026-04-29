@@ -70,8 +70,7 @@ curl http://localhost:8080/
 {
   "mcpServers": {
     "api-registry-mcp": {
-      "command": "go",
-      "args": ["run", "/path/to/api-registry-mcp/main.go"]
+      "url": "http://localhost:8080"
     }
   }
 }
