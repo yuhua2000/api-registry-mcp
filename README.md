@@ -54,7 +54,12 @@ go mod download
 go run main.go
 ```
 
-服务将在默认端口 `8080` 启动。
+服务将在默认端口 `8080` 启动。您可以使用以下命令测试服务：
+
+```bash
+# 测试服务是否正常运行
+curl http://localhost:8080/
+```
 
 ### MCP 客户端配置
 
@@ -65,7 +70,8 @@ go run main.go
 {
   "mcpServers": {
     "api-registry-mcp": {
-      "url": "http://localhost:8080/sse"
+      "command": "go",
+      "args": ["run", "/path/to/api-registry-mcp/main.go"]
     }
   }
 }
@@ -81,22 +87,54 @@ api-registry-mcp/
 ├── api_session.go      # 会话上下文，实现业务逻辑
 ├── go.mod              # Go 模块定义
 ├── go.sum              # 依赖校验
-├── skills.md           # MCP 技能定义文档
+├── SKILLS.md           # MCP 技能定义文档
 └── data/               # 数据存储目录（自动生成）
 ```
 
 ## 🤖 AI 技能使用
 
-项目包含完整的 MCP 技能定义 (`skills.md`)，供 AI 代理自动化 API 文档生成：
+项目包含完整的 MCP 技能定义 ([SKILLS.md](SKILLS.md))，供 AI 代理自动化 API 文档生成。
 
-**核心流程：**
+### 快速开始
+
+1. **配置 MCP 服务器** - 按照上述配置方式连接 MCP 服务
+2. **触发技能** - 在 AI 对话中请求生成 API 文档，例如：
+   - "请为我的项目生成 API 文档"
+   - "审计当前代码并注册所有 API 端点"
+   - "扫描 src/ 目录下的 API 接口"
+3. **等待完成** - AI 代理将自动执行代码审计、端点注册和文档生成
+
+### 核心流程
+
+```
+代码审计 → 端点注册 → 文档生成
+    ↓           ↓           ↓
+扫描源码    结构化注册    输出 Markdown
+```
+
 1. **代码审计** - AI 扫描项目代码，识别所有 API 端点
-2. **自动注册** - 按 OpenAPI 标准注册发现的端点  
+2. **自动注册** - 按 OpenAPI 标准注册发现的端点
 3. **文档生成** - 一键生成完整的 Markdown API 文档
 
-**支持框架：** Python (Flask/FastAPI), JavaScript (Express/NestJS), Go (Gin/Echo), Java (Spring Boot), C# (ASP.NET Core)
+### 支持框架
 
-**使用方式：** 配置 MCP 服务器后，AI 代理即可自动调用此技能完成 API 文档生成。
+| 语言 | 框架 |
+|------|------|
+| Python | Flask, Django, FastAPI |
+| JavaScript/TypeScript | Express, NestJS |
+| Go | Gin, Echo |
+| Java | Spring Boot |
+| C# | ASP.NET Core |
+
+### 使用场景
+
+- **新项目文档生成** - 快速为新项目生成完整的 API 文档
+- **现有项目资产盘点** - 扫描并整理已有项目的 API 接口
+- **微服务接口规范检查** - 检查多个服务的 API 一致性
+
+### 详细说明
+
+完整的技能参数规范、约束条件和最佳实践，请参阅 [SKILLS.md](SKILLS.md)。
 
 ## 🔧 API 示例
 
